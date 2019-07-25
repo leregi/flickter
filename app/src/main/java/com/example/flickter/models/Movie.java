@@ -3,21 +3,30 @@ package com.example.flickter.models;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.parceler.Parcel;
 
 import java.util.ArrayList;
 import java.util.List;
 
+
+@Parcel
 public class Movie {
+    double getAverage;
     String posterPath;
     String title;
     String overview;
     String backdropPath;
+
+    // Empty constructor needed for the Parceler Library
+    public Movie() {
+    }
 
     public  Movie(JSONObject jsonObject) throws JSONException {
         posterPath = jsonObject.getString("poster_path");
         title = jsonObject.getString("title");
         overview = jsonObject.getString("overview");
         backdropPath = jsonObject.getString("backdrop_path");
+        getAverage = jsonObject.getDouble("vote_average");
     }
 
     public static List<Movie> fromJsonArray(JSONArray moviejsonArray) throws JSONException {
@@ -44,5 +53,9 @@ public class Movie {
 
     public String getOverview() {
         return overview;
+    }
+
+    public double getGetAverage() {
+        return getAverage;
     }
 }
